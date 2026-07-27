@@ -4,10 +4,15 @@ on:
   schedule:
     # Run every 12 hours
     - cron: "0 */12 * * *"
-  workflow_dispatch: # Allows manual run
+  workflow_dispatch: # Allows manual trigger
+  push:
+    branches:
+      - main # Runs automatically when updated
 
 jobs:
   build:
+    permissions:
+      contents: write # Grants write permissions automatically
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
